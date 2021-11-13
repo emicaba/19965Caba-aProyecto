@@ -1,4 +1,4 @@
-function Usuario(){
+function crearUsuario(){
 
 let nombre = prompt("ingrese el nombre");
 let apellido = prompt("ingrese el apellido");
@@ -7,7 +7,7 @@ let contraseña = usuario;
 if(nombre!="" && apellido!=""){
     alert ("Su usuario es:" + " " + usuario + "\n Su contrasena es:" + " " + contraseña + "\n PODRA MODIFICARLA EN SETTINGS");
 }else{
-    alert("Su nombre y apellido no pueden estar vacios"); Usuario()
+    alert("Su nombre y apellido no pueden estar vacios"); crearUsuario()
 }}
-Usuario()
+crearUsuario()
 ;
