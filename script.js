@@ -24,42 +24,9 @@ const usuario = crearUsuario();
 const usuarioLogIn = document.getElementById ("logInUsuario")
 
     let impresionUsuario = document.createElement("p");
-    impresionUsuario.classList.add("impresionUsuarios")
+    impresionUsuario.classList.add("impresionUsuarios");
     impresionUsuario.innerHTML = "HOLA " + usuario.usuario
     usuarioLogIn.appendChild(impresionUsuario);
-
-// class Usuario{
-//     constructor (nombre, apellido, usuario, contraseña){
-//         this.nombre = nombre;
-//         this.apellido = apellido;
-//         this.usuario = nombre+apellido;
-//         this.contraseña = nombre+apellido;
-//     }
-
-// }
-// function crearUsuario(){
-//     const usuario1 = new Usuario (prompt("ingrese el nombre"), prompt("ingrese el apellido"));
-//     if(usuario1.nombre!="" && usuario1.apellido!=""){
-//         alert ("Su usuario es:" + " " + usuario1.usuario + "\n Su contrasena es:" + " " + usuario1.contraseña + "\n PODRA MODIFICARLA EN SETTINGS");return usuario1;
-//     }else{
-//         alert("Su nombre y apellido no pueden estar vacios \n Ingrese su nombre y apellido nuevamente"); crearUsuario()
-//     }}
-//     const usuario = crearUsuario();
-//     const usuarioLogIn = document.getElementById ("logInUsuario")
-
-//     let impresionUsuario = document.createElement("p");
-//     impresionUsuario.classList.add("impresionUsuarios")
-//     impresionUsuario.innerHTML = "HOLA "
-//     usuarioLogIn.appendChild(impresionUsuario);
-
-    // let nombre = prompt("Ingrese el Nombre");
-    // if (nombre === ""){alert("DEBE INGRESAR NOMBRE"); nombre = prompt("Ingrese el Nombre");}
-    // let apellido = prompt("Ingrese el Apellido"); if ( apellido === "" ){alert("DEBE INGRESAR APELLIDO");apellido = prompt("Ingrese el Apellido")};
-    // const nombreCompleto = (nombre + " " + apellido);
-    
-    // console.log(nombreCompleto);
-    
-    
 
 const rosasRed = ["Explorer", "Freedom"];
 const rosasHotPink = ["Pink Floyd", "Lola", "Hot Explorer", "Topaz", "Gotcha"];
