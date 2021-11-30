@@ -44,3 +44,35 @@ console.log(rosas);
 } else {
     console.log("Error de concatenacion");
 }
+function enviarPrepedido() {
+
+let buncheUno = document.getElementById("pedidoBunches1").value;
+let buncheDos = document.getElementById("pedidoBunches2").value;
+let buncheTres = document.getElementById("pedidoBunches3").value;
+let buncheCuatro = document.getElementById("pedidoBunches4").value;
+let caja = document.getElementById("caja").value;
+document.getElementById("pedidoParaEnviar1").innerHTML = buncheUno;
+document.getElementById("pedidoParaEnviar2").innerHTML = buncheDos;
+document.getElementById("pedidoParaEnviar3").innerHTML = buncheTres;
+document.getElementById("pedidoParaEnviar4").innerHTML = buncheCuatro;
+document.getElementById("tipoCaja").innerHTML = caja
+}
+enviarPrepedido();
+// function tipoDeCaja(){
+    //     if (document.getElementById("caja").value === "HB"){
+    //         let buncheCinco = document.createElement("input");
+    //         let buncheSeis = document.createElement("input");
+    //         let buncheSiete = document.createElement("input");
+    //         let buncheOcho = document.createElement("input");
+    //         let padreDeBunches = document.getElementById("padreBunches")
+    //         document.padreDeBunches.appendchild(buncheCinco);
+    //         document.padreDeBunches.appendchild(buncheSeis);
+    //         document.padreDeBunches.appendchild(buncheSiete);
+    //         document.padreDeBunches.appendchild(buncheOcho);
+    //     }
+    // }
+
+// objeto de tipo cliente marcacion, nombre, nombre persona, mail, direccion, telefono, pedido
+// array de objeto de flores nombre, precio, tamaño,
+// objeto tipo de caja nombre, bunches, cantidad
+//poner un id al boton enviar y generar un evento

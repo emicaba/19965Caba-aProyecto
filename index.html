@@ -29,16 +29,20 @@
     <fieldset>
         <legend>Pedido</legend>
         <div style="display: flex;">
-            <input type="text" placeholder="cantidad">
-            <input type="text" placeholder="tipo de caja">
-                <div style="display: flex; flex-direction: column;">
-                <input type="text" placeholder="variedades por bunche">
-                <input type="text" placeholder="variedades por bunche">
-                <input type="text" placeholder="variedades por bunche">
-                <input type="text" placeholder="variedades por bunche">
+            <select name="" id="caja">
+                <option value="QB">QB</option>
+                <option value="HB">HB</option>
+                <div id="padreBunches" style="display: flex; flex-direction: column;">
+                <input id="pedidoBunches1" type="text" placeholder="variedades por bunche">
+                <input id="pedidoBunches2" type="text" placeholder="variedades por bunche">
+                <input id="pedidoBunches3" type="text" placeholder="variedades por bunche">
+                <input id="pedidoBunches4" type="text" placeholder="variedades por bunche">
+                <input type="button" value="enviar" name="Prepedido" onclick="enviarPrepedido()">
                 </div>
         </div>
+
     </fieldset>
+
     <h2>Ingrese nombre de persona que recibe:</h2>
     <input type="text" placeholder="Nombre">
     <h2>Ingrese mail:</h2>
@@ -52,8 +56,14 @@
     <input type="submit">
 </form>
 
+<h1>PRE-PEDIDO</h1>
+<h2 id="tipoCaja"></h2>
+<h3 id="pedidoParaEnviar1"></h3>
+<h3 id="pedidoParaEnviar2"></h3>
+<h3 id="pedidoParaEnviar3"></h3>
+<h3 id="pedidoParaEnviar4"></h3>
 </main>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
