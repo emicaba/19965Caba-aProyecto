@@ -21,58 +21,50 @@
     </header>
 <main>
     <h1>INGRESE EL PEDIDO</h1>
-<form action="">
+
+<form id="form-detalle-pedido">
 
     <div style="display: flex;">
-        <select name="" id="caja">
+        <select name="cajaTipo" id="caja">
             <option value="QB">QB</option>
             <option value="HB">HB</option>
-            <div id="padreBunches" style="display: flex; flex-direction: column;">
-            <input id="pedidoBunches1" type="text" placeholder="variedades por bunche">
-            <input id="pedidoBunches2" type="text" placeholder="variedades por bunche">
-            <input id="pedidoBunches3" type="text" placeholder="variedades por bunche">
-            <input id="pedidoBunches4" type="text" placeholder="variedades por bunche">
-        </div>
-            <input type="button" value="Enviar" name="Prepedido" onclick="enviarPrepedido()">
-            <input type="reset">
-    </div>
-</form>
+        </select>
+        <div id="form-detalle-pedido-variedades"></div>
+        <input type="submit" value="Confirmar caja" />
+        <input type="reset" />
+      </div>
+    </form>
 <fieldset>
     <legend>pre-pedido</legend>
-
-    <h2 id="tipoCaja"></h2>
-    <h3 id="pedidoParaEnviar1"></h3>
-    <h3 id="pedidoParaEnviar2"></h3>
-    <h3 id="pedidoParaEnviar3"></h3>
-    <h3 id="pedidoParaEnviar4"></h3>
+    <div id="detalle-caja"></div>
 </fieldset>
 <h1>INGRESE DATOS DE ENVIO</h1>
-<form action="">
+<form id="form-datos-cliente">
     <h2>Ingrese la marcacion:</h2>
-    <input id="marcacion" type="text" placeholder="marcacion">
+    <input id="marcacion" type="text" placeholder="marcacion" name="marcacion">
     <h2>Ingrese la floristeria</h2>
-    <input id="floreria" type="text" placeholder="floristeria">
+    <input id="floreria" type="text" placeholder="floristeria" name="floristeria">
     <h2>Ingrese nombre de persona que recibe:</h2>
-    <input id="persona" type="text" placeholder="Nombre">
+    <input id="persona" type="text" placeholder="Nombre" name="persona">
     <h2>Ingrese mail:</h2>
-    <input id="mail" type="text" placeholder="mail">
+    <input id="mail" type="text" placeholder="mail" name="mail">
     <h2>ingrese direccion:</h2>
-    <input id="direccion" type="text" placeholder="direccion">
+    <input id="direccion" type="text" placeholder="direccion" name="direccion">
     <h2>ingrese telefono:</h2>
-    <input id="telefono" type="text" placeholder="telefono">
+    <input id="telefono" type="text" placeholder="telefono" name="telefono">
     <br>
-    <input type="submit" id="DatosDeEnvio" onclick="crearClientes()">
+    <input type="submit" value="confirmar datos de cliente">
     <input type="reset">
 </form>
+
 <fieldset>
-    <legend>datos de envio</legend>
-<h2 id="tipoMarcacion"></h2>
-<h3 id="nombreFloreria"></h3>
-<h3 id="nombrePersona"></h3>
-<h3 id="mailDeEntrega"></h3>
-<h3 id="direccionDeEntrega"></h3>
-<h3 id="telefonoFloreria"></h3>
+    <legend>Datos de cliente</legend>
+<div id="datos-cliente"></div>
 </fieldset>
+
+<br /><br />
+
+<button id="boton-confirmar-pedido">CONFIRMAR PEDIDO</button>
 </main>
 
     <script src="script.js"></script>

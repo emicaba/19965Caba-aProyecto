@@ -1,107 +1,202 @@
-// class Usuario{
-//     constructor (nombre, apellido, usuario, contraseña){
-//         this.nombre = nombre;
-//         this.apellido = apellido;
-//         this.usuario = nombre+apellido;
-//         this.contraseña = nombre+apellido;
-//     }
+class Usuario{
+    constructor (nombre, apellido, usuario, contraseña){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.usuario = nombre+apellido;
+        this.contraseña = nombre+apellido;
+    }
 
-// }
-let floreria = document.getElementById("floreria").value;
-let personas = document.getElementById("persona").value;
-let mails = document.getElementById("mail").value;
-let direcciones = document.getElementById("direccion").value;
-let telefonos = document.getElementById("telefono").value;
+}
 
-function crearClientes(marcacion, floristeria, persona, mail, direccion, telefono) {
+function crearUsuario(){
+    const usuario1 = new Usuario (prompt("ingrese el nombre"), prompt("ingrese el apellido"));
+
+    if(usuario1.nombre!="" && usuario1.apellido!="") {
+        alert ("Su usuario es:" + " " + usuario1.usuario + "\n Su contrasena es:" + " " + usuario1.contraseña + "\n PODRA MODIFICARLA EN SETTINGS");
+        return usuario1;
+    } else {
+        alert("Su nombre y apellido no pueden estar vacios \n Ingrese su nombre y apellido nuevamente");
+        crearUsuario();
+    }
+}
+
+const usuario = crearUsuario();
+localStorage.setItem("Usuarios", JSON.stringify(usuario));
+const usuarioGuardado = JSON.parse(localStorage.getItem("usuarios"));
+
+const usuarioLogIn = document.getElementById ("logInUsuario");
+
+    let impresionUsuario = document.createElement("p");
+    impresionUsuario.classList.add("impresionUsuarios");
+    impresionUsuario.innerHTML = "HOLA " + usuario.usuario
+    usuarioLogIn.appendChild(impresionUsuario);
+
+class Caja {
+    constructor(tipo, variedad1, variedad2, variedad3, variedad4, variedad5, variedad6, variedad7, variedad8 ){
+      this.tipo = tipo;
+      this.variedad1 = variedad1;
+      this.variedad2 = variedad2;
+      this.variedad3 = variedad3;
+      this.variedad4 = variedad4;
+      this.variedad5 = variedad5;
+      this.variedad6 = variedad6;
+      this.variedad7 = variedad7;
+      this.variedad8 = variedad8;
+    }
+  }
+  const rosas = [
+    ['Rosas Red', ["Explorer", "Freedom"]],
+    ['Rosas Hot Pink', ["Pink Floyd", "Lola", "Hot Explorer", "Topaz", "Gotcha"]],
+    ['Rosas Lavander', ["Cool Water", "Moody Blues"]],
+    ['Rosas Pink', ["Esperance", "Frutetto", "Pink Mondial", "Hermosa", "Sweet Unique"]],
+    ['Rosas White', ["Mondial", "Playa Blanca", "Vendela", "Polarstar", "Moonstone"]],
+    ['Rosas Peach', ["Shimmer", "Tiffany"]],
+    ['Rosas Orange', ["Free Spirit", "Nina", "Orange Crush"]],
+    ['Rosas Yellow', ["Bikini", "Brighton", "Stardust"]],
+    ['Rosas Bicolor', ["Sweetness"]],
+    ['Rosas Teracota', ["Kahala"]],
+  ]
+
+  class Cliente{
+    constructor(marcacion, floristeria, persona, mail, direccion, telefono) {
         this.marcacion = marcacion;
         this.floristeria = floristeria;
         this.persona = persona;
         this.mail = mail;
         this.direccion = direccion;
         this.telefono = telefono;
-        let marcaciones = document.getElementById("marcacion").value;
 
-let cliente1 = new crearClientes (marcaciones, floreria,personas, mails, direcciones, telefonos);
-return cliente1;
 }
+}
+class Pedido {
 
-console.log(cliente1)
-class Cajas{
-    constructor (tipo,tallos,bunches){
-        this.tipo = tipo;
-        this.tallos = tallos;
-        const caja1 = new Clientes (QB, 100,bunches)
-        const caja2 = new Clientes (HB, 200,bunches)
+    constructor() {
+      this.caja = null;
+      this.cliente = null;
+    }
 
+    agregarCaja(caja) {
+      this.caja = new Caja(caja.cajaTipo, caja.cajaVariedad1, caja.cajaVariedad2, caja.cajaVariedad3, caja.cajaVariedad4);
+    }
+
+    agregarCliente(cliente) {
+      this.cliente = new Cliente(cliente.marcacion, cliente.floristeria, cliente.persona, cliente.mail, cliente.direccion, cliente.telefono);
+    }
+
+    enviar() {
+      console.log('Enviando formulario!');
+      console.log({
+        caja: this.caja,
+        cliente: this.cliente,
+      })
+    }
+
+  }
+function crearSelectorDeVariedad(index) {
+    const selector = document.createElement('select');
+    selector.name = `cajaVariedad${index}`;
+    selector.placeholder = `Elegir variedad ${index}...`;
+
+    // Crea los options dentro del selector
+    for (let grupoVariedad of rosas) {
+        const optGroup = document.createElement('optgroup');
+        optGroup.label = grupoVariedad[0];
+
+        for (let variedad of grupoVariedad[1]) {
+            const option = document.createElement('option');
+            option.value = variedad;
+            option.innerText = variedad;
+            optGroup.appendChild(option);
+        }
+
+        selector.appendChild(optGroup);
+    }
+
+    return selector;
+}
+function prepararSelectorDeVariedades(formPedido) {
+    const contenedorSelectores = formPedido.querySelector('#form-detalle-pedido-variedades');
+
+    // Crea los 8 select para elegir las variedades
+    for (let i = 0; i < 8; i++) {
+        contenedorSelectores.appendChild(crearSelectorDeVariedad(i+1));
     }
 }
 
-// function crearUsuario(){
-//     const usuario1 = new Usuario (prompt("ingrese el nombre"), prompt("ingrese el apellido"));
+function manejarSubmitFormDetalleCaja(e, callback) {
+    e.preventDefault();
+    const detalleCaja = {};
 
-//     if(usuario1.nombre!="" && usuario1.apellido!="") {
-//         alert ("Su usuario es:" + " " + usuario1.usuario + "\n Su contrasena es:" + " " + usuario1.contraseña + "\n PODRA MODIFICARLA EN SETTINGS");
-//         return usuario1;
-//     } else {
-//         alert("Su nombre y apellido no pueden estar vacios \n Ingrese su nombre y apellido nuevamente");
-//         crearUsuario();
-//     }
-// }
+    const formData = new FormData(e.target);
 
-// const usuario = crearUsuario();
-// const usuarioLogIn = document.getElementById ("logInUsuario")
+    for (let v of formData) {
+        detalleCaja[v[0]] = v[1];
+    }
 
-//     let impresionUsuario = document.createElement("p");
-//     impresionUsuario.classList.add("impresionUsuarios");
-//     impresionUsuario.innerHTML = "HOLA " + usuario.usuario
-//     usuarioLogIn.appendChild(impresionUsuario);
-
-const rosasRed = ["Explorer", "Freedom"];
-const rosasHotPink = ["Pink Floyd", "Lola", "Hot Explorer", "Topaz", "Gotcha"];
-const rosasLavander = ["Cool Water", "Moody Blues"];
-const rosasPink = ["Esperance", "Frutetto", "Pink Mondial", "Hermosa", "Sweet Unique"];
-const rosasWhite = ["Mondial", "Playa Blanca", "Vendela", "Polarstar", "Moonstone"];
-const rosasPeach = ["Shimmer", "Tiffany"];
-const rosasOrange = ["Free Spirit", "Nina", "Orange Crush"];
-const rosasYellow = ["Bikini", "Brighton", "Stardust"];
-const rosasBicolor = ["Sweetness"];
-const rosasTeracota = ["Kahala"];
-const rosas = rosasRed.concat(rosasHotPink, rosasLavander, rosasPink, rosasWhite, rosasPeach, rosasOrange, rosasYellow, rosasBicolor, rosasTeracota);
-if(rosas.length === rosasRed.length + rosasHotPink.length + rosasLavander.length + rosasPink.length + rosasWhite.length + rosasPeach.length + rosasOrange.length + rosasYellow.length + rosasBicolor.length + rosasTeracota.length){
-console.log(rosas);
-} else {
-    console.log("Error de concatenacion");
+    callback(detalleCaja);
 }
-function enviarPrepedido() {
 
-let buncheUno = document.getElementById("pedidoBunches1").value;
-let buncheDos = document.getElementById("pedidoBunches2").value;
-let buncheTres = document.getElementById("pedidoBunches3").value;
-let buncheCuatro = document.getElementById("pedidoBunches4").value;
-let caja = document.getElementById("caja").value;
-document.getElementById("pedidoParaEnviar1").innerHTML = buncheUno;
-document.getElementById("pedidoParaEnviar2").innerHTML = buncheDos;
-document.getElementById("pedidoParaEnviar3").innerHTML = buncheTres;
-document.getElementById("pedidoParaEnviar4").innerHTML = buncheCuatro;
-document.getElementById("tipoCaja").innerHTML = caja
+function manejarSubmitFormDatosCliente(e, callback) {
+    e.preventDefault();
+    const datosCliente = {};
+
+    const formData = new FormData(e.target);
+
+    for (let v of formData) {
+        datosCliente[v[0]] = v[1];
+    }
+
+    callback(datosCliente);
 }
-enviarPrepedido();
-// function tipoDeCaja(){
-    //     if (document.getElementById("caja").value === "HB"){
-    //         let buncheCinco = document.createElement("input");
-    //         let buncheSeis = document.createElement("input");
-    //         let buncheSiete = document.createElement("input");
-    //         let buncheOcho = document.createElement("input");
-    //         let padreDeBunches = document.getElementById("padreBunches")
-    //         document.padreDeBunches.appendchild(buncheCinco);
-    //         document.padreDeBunches.appendchild(buncheSeis);
-    //         document.padreDeBunches.appendchild(buncheSiete);
-    //         document.padreDeBunches.appendchild(buncheOcho);
-    //     }
-    // }
 
-// objeto de tipo cliente marcacion, nombre, nombre persona, mail, direccion, telefono, pedido
-// array de objeto de flores nombre, precio, tamaño,
-// objeto tipo de caja nombre, bunches, cantidad
-//poner un id al boton enviar y generar un evento
+function mostrarDetalleCaja(detalleCaja) {
+    const contenedorDetalleCaja = document.getElementById('detalle-caja');
+
+    contenedorDetalleCaja.innerHTML = `
+        <h2>Tipo caja: ${detalleCaja.tipo}</h2>
+        <h3>Variedad 1: ${detalleCaja.variedad1}</h3>
+        <h3>Variedad 2: ${detalleCaja.variedad2}</h3>
+        <h3>Variedad 3: ${detalleCaja.variedad3}</h3>
+        <h3>Variedad 4: ${detalleCaja.variedad4}</h3>
+    `
+}
+
+function mostrarDatosCliente(datosCliente) {
+    const contenedorDatosCliente = document.getElementById('datos-cliente');
+
+    contenedorDatosCliente.innerHTML = `
+        <h2>Marcacion: ${datosCliente.marcacion}</h2>
+        <h3>Floristeria: ${datosCliente.floristeria}</h3>
+        <h3>Persona: ${datosCliente.persona}</h3>
+        <h3>Mail: ${datosCliente.mail}</h3>
+        <h3>Dirección: ${datosCliente.direccion}</h3>
+        <h3>Teléfono: ${datosCliente.telefono}</h3>
+    `;
+}
+
+function main() {
+    const informacionCompletaDelPedido = new Pedido();
+    const formDetalleCaja = document.getElementById('form-detalle-pedido');
+    const formDatosCliente = document.getElementById('form-datos-cliente');
+    const botonConfirmarPedido = document.getElementById('boton-confirmar-pedido');
+
+    // Setup
+    prepararSelectorDeVariedades(formDetalleCaja);
+
+    // Eventos
+    formDetalleCaja.addEventListener('submit', (e) => manejarSubmitFormDetalleCaja(e, (detalleCaja) => {
+        informacionCompletaDelPedido.agregarCaja(detalleCaja);
+        mostrarDetalleCaja(informacionCompletaDelPedido.caja);
+    }))
+    formDatosCliente.addEventListener('submit', (e) => manejarSubmitFormDatosCliente(e, (datosCliente) => {
+        informacionCompletaDelPedido.agregarCliente(datosCliente);
+        mostrarDatosCliente(informacionCompletaDelPedido.cliente);
+    }))
+    botonConfirmarPedido.addEventListener('click', () => {
+        //falta agregar logica para validar que todos los elementos no esten vacios
+        informacionCompletaDelPedido.enviar();
+    })
+
+}
+
+main();
