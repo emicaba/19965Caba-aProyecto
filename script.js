@@ -1,35 +1,38 @@
-// class Usuario{
-//     constructor (nombre, apellido, usuario, contraseña){
-//         this.nombre = nombre;
-//         this.apellido = apellido;
-//         this.usuario = nombre+apellido;
-//         this.contraseña = nombre+apellido;
-//     }
+class Usuario{
+    constructor (nombre, apellido, usuario, contraseña){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.usuario = nombre+apellido;
+        this.contraseña = nombre+apellido;
+    }
 
-// }
+}
 
-// function crearUsuario(){
-//     const usuario1 = new Usuario (prompt("ingrese el nombre"), prompt("ingrese el apellido"));
+function crearUsuario(){
+    const usuario1 = new Usuario (prompt("ingrese el nombre"), prompt("ingrese el apellido"));
 
-//     if(usuario1.nombre!="" && usuario1.apellido!="") {
-//         alert ("Su usuario es:" + " " + usuario1.usuario + "\n Su contrasena es:" + " " + usuario1.contraseña + "\n PODRA MODIFICARLA EN SETTINGS");
-//         return usuario1;
-//     } else {
-//         alert("Su nombre y apellido no pueden estar vacios \n Ingrese su nombre y apellido nuevamente");
-//         crearUsuario();
-//     }
-// }
+    if(usuario1.nombre!="" && usuario1.apellido!="") {
+        alert ("Su usuario es:" + " " + usuario1.usuario + "\n Su contrasena es:" + " " + usuario1.contraseña + "\n PODRA MODIFICARLA EN SETTINGS");
+        return usuario1;
+    } else {
+        alert("Su nombre y apellido no pueden estar vacios \n Ingrese su nombre y apellido nuevamente");
+        crearUsuario();
+    }
+}
 
-// const usuario = crearUsuario();
-// localStorage.setItem("Usuarios", JSON.stringify(usuario));
-// const usuarioGuardado = JSON.parse(localStorage.getItem("usuarios"));
+const usuario = crearUsuario();
+localStorage.setItem("Usuarios", JSON.stringify(usuario));
+const usuarioGuardado = JSON.parse(localStorage.getItem("usuarios"));
 
-// const usuarioLogIn = document.getElementById ("logInUsuario");
+const usuarioLogIn = document.getElementById ("logInUsuario");
 
-//     let impresionUsuario = document.createElement("p");
-//     impresionUsuario.classList.add("impresionUsuarios");
-//     impresionUsuario.innerHTML = "HOLA " + usuario.usuario
-//     usuarioLogIn.appendChild(impresionUsuario);
+    let impresionUsuario = document.createElement("p");
+    impresionUsuario.classList.add("impresionUsuarios");
+    impresionUsuario.innerHTML = "HOLA " + usuario.usuario
+    usuarioLogIn.appendChild(impresionUsuario);
+urlrosas="http://127.0.0.1:5500/rosas.json"
+
+$.get(urlrosas)
 
 class Caja {
     constructor(tipo, variedad1, variedad2, variedad3, variedad4, variedad5, variedad6, variedad7, variedad8 ){
@@ -108,10 +111,10 @@ function crearSelectorDeVariedad(index) {
             const option = document.createElement('option');
             option.value = variedad;
             option.innerText = variedad;
-            optGroup.appendChild(option);
+            optGroup.append(option);
         }
 
-        selector.appendChild(optGroup);
+        selector.append(optGroup);
     }
 
     return selector;
@@ -123,7 +126,7 @@ function prepararSelectorDeVariedades(tipoSeleccionado, formPedido) {
     contenedorSelectores.innerHTML="";
     const cantidadSelectores = tipoSeleccionado === "HB" ? 8 : 4;
     for (let i = 0; i < cantidadSelectores; i++) {
-        contenedorSelectores.appendChild(crearSelectorDeVariedad(i+1));
+        contenedorSelectores.append(crearSelectorDeVariedad(i+1));
     }
 }
 
@@ -196,7 +199,7 @@ function main() {
     const formDetalleCaja = document.getElementById('form-detalle-pedido');
     const formDatosCliente = document.getElementById('form-datos-cliente');
     const botonConfirmarPedido = document.getElementById('boton-confirmar-pedido');
-
+    const URLGET = "http://127.0.0.1:5500/pedidoFinal.json"
     // Eventos
     document.getElementById('caja').addEventListener('change', (e)=> {
     prepararSelectorDeVariedades(e.target.value, formDetalleCaja);
@@ -210,22 +213,12 @@ function main() {
         mostrarDatosCliente(informacionCompletaDelPedido.cliente);
     }))
     botonConfirmarPedido.addEventListener('click', () => {
-        //falta agregar logica para validar que todos los elementos no esten vacios
-        informacionCompletaDelPedido.enviar();
-    })
+        $.post(URLGET, informacionCompletaDelPedido ,(respuesta, estado) => {
+            if(estado === "success"){
+                $("body").prepend(`<div>
+    Guardado:${respuesta}
+    </div>`);}
+    }); alert("caja cargada"); location.reload()
 
-}
-
+})};
 main();
-
-
-function miFunaicon (algo, callback){
-   const segundoNumero = algo + 1;
-    console.log(segundoNumero);
-    console.log(callback());
-}
-
-miFuncion(4, ()=>{
-    const primerNumero = 1 + 2;
-    return primerNumero;
-})
