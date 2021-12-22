@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;1,200;1,300&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
@@ -11,12 +15,13 @@
     <header>
         <nav>
             <span id = "logInUsuario"></span>
-            <span class="logo">SIO</span>
+            <span class="logo"><img src="imagenes/InstaMesa de trabajo 7.png" alt="logo de cliente" width="300px" height="55px"> </span>
             <ul>
                 <li>HELP</li>
                 <li>SETTINGS</li>
             </ul>
         </nav>
+        <br>
         <hr>
     </header>
 <main>
@@ -30,12 +35,14 @@
             <option value="HB">HB</option>
         </select>
         <div id="form-detalle-pedido-variedades"></div>
-        <input type="submit" value="Confirmar caja" />
-        <input type="reset" />
-      </div>
-    </form>
+    </div>
+    <div id="botones-cajas">
+        <input type="submit" value="Confirmar caja" id="boton-confirmar-cajas"/>
+        <input type="reset" id="boton-resetear-cajas"/>
+    </div>
+</form>
 <fieldset>
-    <legend>pre-pedido</legend>
+    <legend>Pre-pedido</legend>
     <div id="detalle-caja"></div>
 </fieldset>
 <h1>INGRESE DATOS DE ENVIO</h1>
@@ -53,8 +60,11 @@
     <h2>ingrese telefono:</h2>
     <input id="telefono" type="text" placeholder="telefono" name="telefono">
     <br>
-    <input type="submit" value="confirmar datos de cliente">
-    <input type="reset">
+
+    <div id="botones-clientes">
+    <input type="submit" value="Confirmar datos" id="boton-confirmar-cliente">
+    <input type="reset" id="boton-resetear-cliente">
+    </div>
 </form>
 
 <fieldset>
@@ -66,7 +76,10 @@
 
 <button id="boton-confirmar-pedido">CONFIRMAR PEDIDO</button>
 </main>
-
+<footer>
+    <p id="footer">Desarrollo y diseño Emiliano Cabaña</p>
+</footer>
     <script src="script.js"></script>
+
 </body>
 </html>
