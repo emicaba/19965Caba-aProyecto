@@ -1,38 +1,37 @@
-class Usuario{
-    constructor (nombre, apellido, usuario, contraseña){
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.usuario = nombre+apellido;
-        this.contraseña = nombre+apellido;
-    }
+// class Usuario{
+//     constructor (nombre, apellido, usuario, contraseña){
+//         this.nombre = nombre;
+//         this.apellido = apellido;
+//         this.usuario = nombre+apellido;
+//         this.contraseña = nombre+apellido;
+//     }
 
-}
+// }
 
-function crearUsuario(){
-    const usuario1 = new Usuario (prompt("ingrese el nombre"), prompt("ingrese el apellido"));
+// function crearUsuario(){
+//     const usuario1 = new Usuario (prompt("ingrese el nombre"), prompt("ingrese el apellido"));
 
-    if(usuario1.nombre!="" && usuario1.apellido!="") {
-        alert ("Su usuario es:" + " " + usuario1.usuario + "\n Su contrasena es:" + " " + usuario1.contraseña + "\n PODRA MODIFICARLA EN SETTINGS");
-        return usuario1;
-    } else {
-        alert("Su nombre y apellido no pueden estar vacios \n Ingrese su nombre y apellido nuevamente");
-        crearUsuario();
-    }
-}
+//     if(usuario1.nombre!="" && usuario1.apellido!="") {
+//         alert ("Su usuario es:" + " " + usuario1.usuario + "\n Su contrasena es:" + " " + usuario1.contraseña + "\n PODRA MODIFICARLA EN SETTINGS");
+//         return usuario1;
+//     } else {
+//         alert("Su nombre y apellido no pueden estar vacios \n Ingrese su nombre y apellido nuevamente");
+//         crearUsuario();
+//     }
+// }
 
-const usuario = crearUsuario();
-localStorage.setItem("Usuarios", JSON.stringify(usuario));
-const usuarioGuardado = JSON.parse(localStorage.getItem("usuarios"));
+// const usuario = crearUsuario();
+// localStorage.setItem("Usuarios", JSON.stringify(usuario));
+// const usuarioGuardado = JSON.parse(localStorage.getItem("usuarios"));
 
-const usuarioLogIn = document.getElementById ("logInUsuario");
+// const usuarioLogIn = document.getElementById ("logInUsuario");
 
-    let impresionUsuario = document.createElement("p");
-    impresionUsuario.classList.add("impresionUsuarios");
-    impresionUsuario.innerHTML = "HOLA " + usuario.usuario
-    usuarioLogIn.appendChild(impresionUsuario);
-urlrosas="http://127.0.0.1:5500/rosas.json"
+//     let impresionUsuario = document.createElement("p");
+//     impresionUsuario.classList.add("impresionUsuarios");
+//     impresionUsuario.innerHTML = "HOLA " + usuario.usuario
+//     usuarioLogIn.appendChildChild(impresionUsuario);
 
-$.get(urlrosas)
+
 
 class Caja {
     constructor(tipo, variedad1, variedad2, variedad3, variedad4, variedad5, variedad6, variedad7, variedad8 ){
@@ -47,18 +46,12 @@ class Caja {
       this.variedad8 = variedad8;
     }
   }
-  const rosas = [
-    ['Rosas Red', ["Explorer", "Freedom"]],
-    ['Rosas Hot Pink', ["Pink Floyd", "Lola", "Hot Explorer", "Topaz", "Gotcha"]],
-    ['Rosas Lavander', ["Cool Water", "Moody Blues"]],
-    ['Rosas Pink', ["Esperance", "Frutetto", "Pink Mondial", "Hermosa", "Sweet Unique"]],
-    ['Rosas White', ["Mondial", "Playa Blanca", "Vendela", "Polarstar", "Moonstone"]],
-    ['Rosas Peach', ["Shimmer", "Tiffany"]],
-    ['Rosas Orange', ["Free Spirit", "Nina", "Orange Crush"]],
-    ['Rosas Yellow', ["Bikini", "Brighton", "Stardust"]],
-    ['Rosas Bicolor', ["Sweetness"]],
-    ['Rosas Teracota', ["Kahala"]],
-  ]
+
+
+  let rosas = []
+  $.get("http://127.0.0.1:5500/rosas.json", (res) => {
+    rosas = res;
+})
 
   class Cliente{
     constructor(marcacion, floristeria, persona, mail, direccion, telefono) {
@@ -111,10 +104,10 @@ function crearSelectorDeVariedad(index) {
             const option = document.createElement('option');
             option.value = variedad;
             option.innerText = variedad;
-            optGroup.append(option);
+            optGroup.appendChild(option);
         }
 
-        selector.append(optGroup);
+        selector.appendChild(optGroup);
     }
 
     return selector;
@@ -126,7 +119,7 @@ function prepararSelectorDeVariedades(tipoSeleccionado, formPedido) {
     contenedorSelectores.innerHTML="";
     const cantidadSelectores = tipoSeleccionado === "HB" ? 8 : 4;
     for (let i = 0; i < cantidadSelectores; i++) {
-        contenedorSelectores.append(crearSelectorDeVariedad(i+1));
+        contenedorSelectores.appendChild(crearSelectorDeVariedad(i+1));
     }
 }
 
@@ -199,7 +192,7 @@ function main() {
     const formDetalleCaja = document.getElementById('form-detalle-pedido');
     const formDatosCliente = document.getElementById('form-datos-cliente');
     const botonConfirmarPedido = document.getElementById('boton-confirmar-pedido');
-    const URLGET = "http://127.0.0.1:5500/pedidoFinal.json"
+
     // Eventos
     document.getElementById('caja').addEventListener('change', (e)=> {
     prepararSelectorDeVariedades(e.target.value, formDetalleCaja);
@@ -213,12 +206,28 @@ function main() {
         mostrarDatosCliente(informacionCompletaDelPedido.cliente);
     }))
     botonConfirmarPedido.addEventListener('click', () => {
-        $.post(URLGET, informacionCompletaDelPedido ,(respuesta, estado) => {
-            if(estado === "success"){
-                $("body").prepend(`<div>
-    Guardado:${respuesta}
-    </div>`);}
-    }); alert("caja cargada"); location.reload()
-
-})};
+        if(informacionCompletaDelPedido.cliente.marcacion.trim().length > 0 &&
+        informacionCompletaDelPedido.cliente.floristeria.trim().length > 0 &&
+        informacionCompletaDelPedido.cliente.persona.trim().length > 0 &&
+        informacionCompletaDelPedido.cliente.mail.trim().length > 0 &&
+        informacionCompletaDelPedido.cliente.direccion.trim().length > 0 &&
+        informacionCompletaDelPedido.cliente.telefono.trim().length > 0
+        ){
+            if(document.getElementById('caja').value != "indefinido"){
+                $.post("https://run.mocky.io/v3/cb4dc9a4-3212-4c6b-a1c1-50817bc0c6fd", informacionCompletaDelPedido ,(respuesta, estado) => {
+                if(estado === "success"){
+                    alert(`Guardado:${respuesta.message}`);
+                    setTimeout(() => {
+                        location.reload()
+                    }, 500);
+                }
+                });
+            } else {
+                alert("Campos de Caja incorrecto");
+            }
+        } else {
+            alert("Campos de cliente incompletos");
+        }
+    });
+};
 main();
