@@ -5,12 +5,11 @@ header{height: 80px;}
 nav{margin: 50px;display: flex; justify-content: space-between;height: 0px;}
 ul{display: flex;justify-content: flex-end;text-decoration: none;height: 10px;}
 li{list-style-type: none; padding-right: 20px;height: 10px;}
-hr{width: 90%;margin-left: 5%;color: blueviolet;height: 5px; background-color: blueviolet;}
+hr{width: 90%;margin-left: 5%;color: blueviolet;height: 5px; background-color: blueviolet;border-radius: 6px; height: 5px;}
 form{margin: 50px;}
-h1{text-align: center; margin-top: 30px;}
+h1{text-align: center; margin-top: 30px;font-family: 'Josefin Sans', sans-serif; font-size: 50px; color: blueviolet; font-weight: 300;}
 .impresionUsuarios{text-decoration: solid;}
 #boton-confirmar-pedido{border-radius: 5px; width: 200px; height: 30px; margin-left: 40%; background-color: blueviolet; font-family: 'Josefin Sans', sans-serif;; color: white; font-weight:bolder; margin-bottom: 20px;}
-hr{border-radius: 6px; height: 5px;}
 #caja{border-radius: 5px; margin: 10px; height: 30px; font-family: 'Josefin Sans', sans-serif; font-size: 15px;}
 select{ font-family: 'Josefin Sans', sans-serif; height: 25px; font-size: 15px; margin: 5px; border-radius: 5px;font-weight: 300;}
 option{font-family: 'Josefin Sans', sans-serif; font-weight: 300}
@@ -19,7 +18,6 @@ optgroup{font-family: 'Josefin Sans', sans-serif; font-weight: 400}
 #boton-confirmar-cajas{border-radius: 5px;font-family: 'Josefin Sans', sans-serif; height: 30px; width: 150px; font-weight: 300; font-size: 20px; background-color:rgb(220, 210, 230) ;}
 #boton-resetear-cajas{border-radius: 5px;font-family: 'Josefin Sans', sans-serif; height: 30px; width: 150px; font-size: 20px;font-weight: 300; background-color:rgb(220, 210, 230) ;}
 #botones-cajas{margin-left: 15% ;}
-h1{font-family: 'Josefin Sans', sans-serif; font-size: 50px; color: blueviolet; font-weight: 300;}
 legend{font-family: 'Josefin Sans', sans-serif; font-size: 20px}
 #detalle-caja{ font-family: 'Josefin Sans', sans-serif; font-size: 15px; color: blueviolet; font-weight:200; font-style: italic;margin: 10px; text-align: left;}
 fieldset{margin-left: 20%; margin-right: 40%; text-align: center;}
