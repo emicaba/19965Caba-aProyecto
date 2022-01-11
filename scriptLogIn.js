@@ -4,12 +4,12 @@ $.get("http://127.0.0.1:5500/usuarios.json", (res) => {
 });
 function confirmar(valor1 , valor2){
     for(let i = 0; i<2; i++){
-    if (usuarios[i].usuario === valor1 && usuarios[i].password === valor2){
-         return document.location.replace('/');
-    }else{
-          alert("la contraseña o el usuario es incorrecto")
-    }
-}
+        if (usuarios[i].usuario === valor1 && usuarios[i].password === valor2){
+         return document.location.replace('/dashboard.html');
+        };
+    };
+    return alert("la contraseña o el usuario es incorrecto")
+
 };
 
 //events

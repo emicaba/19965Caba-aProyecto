@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,8 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;1,200;1,300&display=swap"
       rel="stylesheet"
     />
-
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styleLogIn.css" />
     <title>Document</title>
   </head>
   <body>
@@ -34,90 +33,25 @@
       <br />
       <hr />
     </header>
-    <main>
-      <h1>INGRESE EL PEDIDO</h1>
-
-      <form id="form-detalle-pedido">
-        <div style="display: flex">
-          <select name="cajaTipo" id="caja">
-            <option disabled selected value="indefinido">Elegi la caja</option>
-            <option value="QB">QB</option>
-            <option value="HB">HB</option>
-          </select>
-          <div id="form-detalle-pedido-variedades"></div>
-        </div>
-        <div id="botones-cajas">
-          <input
-            type="submit"
-            value="Confirmar caja"
-            id="boton-confirmar-cajas"
-          />
-          <input type="reset" id="boton-resetear-cajas" />
-        </div>
-      </form>
-      <fieldset>
-        <legend>Pre-pedido</legend>
-        <div id="detalle-caja"></div>
-      </fieldset>
-      <h1>INGRESE DATOS DE ENVIO</h1>
-      <form id="form-datos-cliente">
-        <h2>Ingrese la marcacion:</h2>
-        <input
-          id="marcacion"
-          type="text"
-          placeholder="marcacion"
-          name="marcacion"
-        />
-        <h2>Ingrese la floristeria</h2>
-        <input
-          id="floreria"
-          type="text"
-          placeholder="floristeria"
-          name="floristeria"
-        />
-        <h2>Ingrese nombre de persona que recibe:</h2>
-        <input id="persona" type="text" placeholder="Nombre" name="persona" />
-        <h2>Ingrese mail:</h2>
-        <input id="mail" type="text" placeholder="mail" name="mail" />
-        <h2>Ingrese direccion:</h2>
-        <input
-          id="direccion"
-          type="text"
-          placeholder="direccion"
-          name="direccion"
-        />
-        <h2>Ingrese telefono:</h2>
-        <input
-          id="telefono"
-          type="text"
-          placeholder="telefono"
-          name="telefono"
-        />
-        <br />
-
-        <div id="botones-clientes">
-          <input
-            type="submit"
-            value="Confirmar datos"
-            id="boton-confirmar-cliente"
-          />
-          <input type="reset" id="boton-resetear-cliente" />
-        </div>
-      </form>
-
-      <fieldset>
-        <legend>Datos de cliente</legend>
-        <div id="datos-cliente"></div>
-      </fieldset>
-
-      <br /><br />
-
-      <button id="boton-confirmar-pedido">CONFIRMAR PEDIDO</button>
-    </main>
+    <form id="logInform" action="">
+      <input id="usuario" type="text" placeholder="Usuario" name="usuario" />
+      <input
+        id="password"
+        type="text"
+        placeholder="Contraseña"
+        name="constraseña"
+      />
+      <input
+        id="logIn"
+        type="submit"
+        placeholder="Ingresar"
+        name="botonIngresar"
+      />
+    </form>
     <footer>
       <p id="footer">Desarrollo y diseño Emiliano Cabaña</p>
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
+    <script src="scriptLogIn.js"></script>
   </body>
 </html>

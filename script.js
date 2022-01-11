@@ -184,7 +184,7 @@ function main() {
                     alert(`Guardado:${respuesta.message}`);
                     setTimeout(() => {
                         location.reload()
-                    }, 500);
+                    }, 200);
                 }
                 });
             } else {
